@@ -186,7 +186,7 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
         </>
       )}
       <button
-        className="text-zinc-400 text-sm cursor-pointer w-full text-center bg-transparent"
+        className="text-blue-600 hover:text-blue-700 text-sm cursor-pointer w-full text-center bg-transparent font-medium mt-2"
         onClick={() => setShowMore(!showMore)}
       >
         {showMore ? "Show less" : "Show more..."}
