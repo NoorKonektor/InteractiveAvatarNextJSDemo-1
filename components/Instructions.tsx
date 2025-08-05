@@ -35,15 +35,15 @@ export default function Instructions({ language }: InstructionsProps) {
   const text = content[language as keyof typeof content] || content.en;
 
   return (
-    <div className="bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-lg p-6 mb-6 border border-blue-500/20">
-      <h2 className="text-2xl font-bold text-white mb-2">{text.title}</h2>
-      <p className="text-blue-200 mb-4">{text.subtitle}</p>
+    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-200">
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">{text.title}</h2>
+      <p className="text-blue-600 mb-4 font-medium">{text.subtitle}</p>
       <ul className="space-y-2 mb-4">
         {text.features.map((feature, index) => (
-          <li key={index} className="text-gray-300">{feature}</li>
+          <li key={index} className="text-gray-700">{feature}</li>
         ))}
       </ul>
-      <p className="text-sm text-yellow-200 bg-yellow-900/20 rounded p-3 border border-yellow-500/30">
+      <p className="text-sm text-amber-800 bg-amber-50 rounded-lg p-3 border border-amber-200">
         💡 {text.note}
       </p>
     </div>
