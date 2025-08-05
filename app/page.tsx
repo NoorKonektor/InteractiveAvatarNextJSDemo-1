@@ -3,6 +3,7 @@
 import { useState } from "react";
 import InteractiveAvatar from "@/components/InteractiveAvatar";
 import NavBar from "@/components/NavBar";
+import Instructions from "@/components/Instructions";
 
 export default function App() {
   const [language, setLanguage] = useState("en");
