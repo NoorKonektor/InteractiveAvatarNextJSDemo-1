@@ -156,60 +156,119 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     }
   };
 
+  const getInstructionsContent = () => {
+    const content = {
+      en: {
+        title: "Virtual Meeting Assistant",
+        subtitle: "AI-powered multilingual support",
+        features: [
+          "🗣️ Voice & text chat with AI avatar",
+          "🌍 English & Spanish support",
+          "❓ Quick preset questions",
+          "📍 Interactive maps & media",
+          "🏥 Perfect for medical offices"
+        ],
+        note: "Choose your language in the top-right corner and start a conversation!"
+      },
+      es: {
+        title: "Asistente Virtual de Reuniones",
+        subtitle: "Soporte multilingüe impulsado por IA",
+        features: [
+          "🗣️ Chat de voz y texto con avatar IA",
+          "🌍 Soporte en inglés y español",
+          "❓ Preguntas preconfiguradas rápidas",
+          "📍 Mapas interactivos y medios",
+          "🏥 Perfecto para consultorios médicos"
+        ],
+        note: "¡Elige tu idioma en la esquina superior derecha y comienza una conversación!"
+      }
+    };
+    return content[language as keyof typeof content] || content.en;
+  };
+
+  const instructionsText = getInstructionsContent();
+
   return (
-    <div className="w-full flex flex-col gap-6">
-      {/* Main content area with side-by-side layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Avatar Section */}
-        <div className="flex flex-col rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden">
-          <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-            {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
-              <AvatarVideo ref={mediaStream} />
-            ) : (
-              <AvatarConfig config={config} onConfigChange={setConfig} />
-            )}
-          </div>
-          <div className="flex flex-col gap-3 items-center justify-center p-6 border-t border-gray-200 w-full bg-gray-50">
-            {sessionState === StreamingAvatarSessionState.CONNECTED ? (
-              <AvatarControls />
-            ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
-              <div className="flex flex-row gap-4">
-                <Button onClick={() => startSessionV2(true)}>
-                  Start Voice Chat
-                </Button>
-                <Button onClick={() => startSessionV2(false)}>
-                  Start Text Chat
-                </Button>
+    <div className="w-full">
+      {/* Unified card containing everything */}
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+        {/* Header with instructions */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-100 p-6 border-b border-gray-200">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">{instructionsText.title}</h2>
+              <p className="text-blue-600 font-medium mb-3">{instructionsText.subtitle}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-700">
+                {instructionsText.features.map((feature, index) => (
+                  <div key={index} className="flex items-center">
+                    {feature}
+                  </div>
+                ))}
               </div>
-            ) : (
-              <LoadingIcon />
-            )}
+            </div>
+            <div className="lg:w-80">
+              <div className="text-sm text-amber-800 bg-amber-50 rounded-lg p-3 border border-amber-200">
+                💡 {instructionsText.note}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Media Section */}
-        <div className="flex flex-col gap-4">
-          <InlineMedia
-            mediaType={mediaDisplay.type}
-            mediaUrl={mediaDisplay.url}
-            isVisible={true}
-            language={language}
-          />
+        {/* Main content area */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+          {/* Avatar Section */}
+          <div className="flex flex-col">
+            <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl mb-4">
+              {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
+                <AvatarVideo ref={mediaStream} />
+              ) : (
+                <AvatarConfig config={config} onConfigChange={setConfig} />
+              )}
+            </div>
+            <div className="flex flex-col gap-3 items-center justify-center p-4 bg-gray-50 rounded-xl">
+              {sessionState === StreamingAvatarSessionState.CONNECTED ? (
+                <AvatarControls />
+              ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
+                <div className="flex flex-row gap-4">
+                  <Button onClick={() => startSessionV2(true)}>
+                    Start Voice Chat
+                  </Button>
+                  <Button onClick={() => startSessionV2(false)}>
+                    Start Text Chat
+                  </Button>
+                </div>
+              ) : (
+                <LoadingIcon />
+              )}
+            </div>
+          </div>
+
+          {/* Media Section */}
+          <div className="flex flex-col">
+            <InlineMedia
+              mediaType={mediaDisplay.type}
+              mediaUrl={mediaDisplay.url}
+              isVisible={true}
+              language={language}
+            />
+          </div>
         </div>
+
+        {/* Preset buttons and message history */}
+        {sessionState === StreamingAvatarSessionState.CONNECTED && (
+          <div className="border-t border-gray-200 bg-gray-50">
+            <div className="p-6">
+              <PresetButtons
+                onSendMessage={handlePresetMessage}
+                language={language}
+              />
+            </div>
+            <div className="border-t border-gray-200 bg-white">
+              <MessageHistory />
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Preset buttons and message history */}
-      {sessionState === StreamingAvatarSessionState.CONNECTED && (
-        <>
-          <PresetButtons
-            onSendMessage={handlePresetMessage}
-            language={language}
-          />
-          <div className="bg-white rounded-xl shadow-lg border border-gray-200">
-            <MessageHistory />
-          </div>
-        </>
-      )}
     </div>
   );
 }
