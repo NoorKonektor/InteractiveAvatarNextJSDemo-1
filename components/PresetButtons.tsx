@@ -82,7 +82,7 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
   };
 
   return (
-    <div className="w-full bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+    <div className="w-full">
       <h3 className="text-gray-800 text-lg font-semibold mb-4">
         {language === "es" ? "Preguntas frecuentes" : "Quick Questions"}
       </h3>
@@ -94,7 +94,7 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
             className={`text-sm p-4 h-auto whitespace-normal transition-all rounded-lg font-medium ${
               selectedButton === button.id
                 ? "bg-blue-600 text-white scale-95 shadow-lg"
-                : "bg-gray-50 text-gray-700 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300"
+                : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 shadow-sm"
             }`}
           >
             {language === "es" ? button.textEs : button.textEn}
