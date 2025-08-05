@@ -161,48 +161,59 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4">
-      <div className="flex flex-col rounded-xl bg-zinc-900 overflow-hidden">
-        <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center">
-          {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
-            <AvatarVideo ref={mediaStream} />
-          ) : (
-            <AvatarConfig config={config} onConfigChange={setConfig} />
-          )}
+    <div className="w-full flex flex-col gap-6">
+      {/* Main content area with side-by-side layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Avatar Section */}
+        <div className="flex flex-col rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden">
+          <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+            {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
+              <AvatarVideo ref={mediaStream} />
+            ) : (
+              <AvatarConfig config={config} onConfigChange={setConfig} />
+            )}
+          </div>
+          <div className="flex flex-col gap-3 items-center justify-center p-6 border-t border-gray-200 w-full bg-gray-50">
+            {sessionState === StreamingAvatarSessionState.CONNECTED ? (
+              <AvatarControls />
+            ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
+              <div className="flex flex-row gap-4">
+                <Button onClick={() => startSessionV2(true)}>
+                  Start Voice Chat
+                </Button>
+                <Button onClick={() => startSessionV2(false)}>
+                  Start Text Chat
+                </Button>
+              </div>
+            ) : (
+              <LoadingIcon />
+            )}
+          </div>
         </div>
-        <div className="flex flex-col gap-3 items-center justify-center p-4 border-t border-zinc-700 w-full">
-          {sessionState === StreamingAvatarSessionState.CONNECTED ? (
-            <AvatarControls />
-          ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
-            <div className="flex flex-row gap-4">
-              <Button onClick={() => startSessionV2(true)}>
-                Start Voice Chat
-              </Button>
-              <Button onClick={() => startSessionV2(false)}>
-                Start Text Chat
-              </Button>
-            </div>
-          ) : (
-            <LoadingIcon />
-          )}
+
+        {/* Media Section */}
+        <div className="flex flex-col gap-4">
+          <InlineMedia
+            mediaType={mediaDisplay.type}
+            mediaUrl={mediaDisplay.url}
+            isVisible={true}
+            language={language}
+          />
         </div>
       </div>
+
+      {/* Preset buttons and message history */}
       {sessionState === StreamingAvatarSessionState.CONNECTED && (
         <>
           <PresetButtons
             onSendMessage={handlePresetMessage}
             language={language}
           />
-          <MessageHistory />
+          <div className="bg-white rounded-xl shadow-lg border border-gray-200">
+            <MessageHistory />
+          </div>
         </>
       )}
-      <MediaDisplay
-        mediaType={mediaDisplay.type}
-        mediaUrl={mediaDisplay.url}
-        isVisible={mediaDisplay.visible}
-        onClose={closeMediaDisplay}
-        language={language}
-      />
     </div>
   );
 }
