@@ -12,6 +12,7 @@ export default function App() {
     <div className="w-screen h-screen flex flex-col bg-black">
       <NavBar onLanguageChange={setLanguage} currentLanguage={language} />
       <div className="w-[900px] flex flex-col items-start justify-start gap-5 mx-auto pt-4 pb-20">
+        <Instructions language={language} />
         <div className="w-full">
           <InteractiveAvatar language={language} />
         </div>
