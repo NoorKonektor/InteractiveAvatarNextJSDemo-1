@@ -31,6 +31,7 @@ export const useStreamingAvatarSession = () => {
     clearMessages,
   } = useStreamingAvatarContext();
   const { stopVoiceChat } = useVoiceChat();
+  const { sendMessage } = useTextChat();
 
   useMessageHistory();
 
