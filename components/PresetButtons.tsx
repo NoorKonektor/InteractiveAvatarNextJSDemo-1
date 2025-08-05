@@ -23,8 +23,8 @@ const PRESET_BUTTONS: PresetButton[] = [
     textEn: "How to book an appointment",
     textEs: "Cómo reservar una cita",
     message: "How can I book an appointment?",
-    mediaType: "video",
-    mediaUrl: "/videos/booking-tutorial.mp4"
+    mediaType: "image",
+    mediaUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: "dentist-location",
@@ -32,7 +32,7 @@ const PRESET_BUTTONS: PresetButton[] = [
     textEs: "¿Dónde está el consultorio del dentista?",
     message: "Where is the dentist room situated in the building?",
     mediaType: "map",
-    mediaUrl: "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d3024.123456789!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuMyJX!5e0!3m2!1sen!2sus!4v1234567890123"
+    mediaUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.4555!2d-74.0059413!3d40.7127837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e7fcc1f%3A0x4b3ba7f23b567d2c!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890"
   },
   {
     id: "office-hours",
@@ -40,7 +40,7 @@ const PRESET_BUTTONS: PresetButton[] = [
     textEs: "Horarios y contacto",
     message: "What are your office hours and how can I contact you?",
     mediaType: "image",
-    mediaUrl: "/images/office-hours.jpg"
+    mediaUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: "parking",
@@ -48,15 +48,15 @@ const PRESET_BUTTONS: PresetButton[] = [
     textEs: "Información de estacionamiento",
     message: "Where can I park and what are the parking fees?",
     mediaType: "map",
-    mediaUrl: "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d3024.123456789!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuMyJX!5e0!3m2!1sen!2sus!4v1234567890123"
+    mediaUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.4555!2d-74.0059413!3d40.7127837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e7fcc1f%3A0x4b3ba7f23b567d2c!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890"
   },
   {
     id: "services",
     textEn: "Our services",
     textEs: "Nuestros servicios",
     message: "What services do you offer and what are the costs?",
-    mediaType: "video",
-    mediaUrl: "/videos/services-overview.mp4"
+    mediaType: "image",
+    mediaUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: "insurance",
@@ -64,7 +64,7 @@ const PRESET_BUTTONS: PresetButton[] = [
     textEs: "Cobertura de seguro",
     message: "Do you accept my insurance plan and what does it cover?",
     mediaType: "image",
-    mediaUrl: "/images/insurance-info.jpg"
+    mediaUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&auto=format"
   }
 ];
 
