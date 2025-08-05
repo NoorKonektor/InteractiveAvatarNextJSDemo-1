@@ -19,6 +19,8 @@ import { useVoiceChat } from "./logic/useVoiceChat";
 import { StreamingAvatarProvider, StreamingAvatarSessionState } from "./logic";
 import { LoadingIcon } from "./Icons";
 import { MessageHistory } from "./AvatarSession/MessageHistory";
+import PresetButtons from "./PresetButtons";
+import MediaDisplay from "./MediaDisplay";
 
 import { AVATARS } from "@/app/lib/constants";
 
