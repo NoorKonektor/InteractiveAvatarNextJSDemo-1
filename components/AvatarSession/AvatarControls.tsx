@@ -18,9 +18,9 @@ export const AvatarControls: React.FC = () => {
   const { interrupt } = useInterrupt();
 
   return (
-    <div className="flex flex-col gap-3 relative w-full items-center">
+    <div className="flex flex-col gap-4 relative w-full items-center">
       <ToggleGroup
-        className={`bg-zinc-700 rounded-lg p-1 ${isVoiceChatLoading ? "opacity-50" : ""}`}
+        className={`bg-gray-100 border border-gray-300 rounded-lg p-1 ${isVoiceChatLoading ? "opacity-50" : ""}`}
         disabled={isVoiceChatLoading}
         type="single"
         value={isVoiceChatActive || isVoiceChatLoading ? "voice" : "text"}
@@ -37,21 +37,21 @@ export const AvatarControls: React.FC = () => {
         }}
       >
         <ToggleGroupItem
-          className="data-[state=on]:bg-zinc-800 rounded-lg p-2 text-sm w-[90px] text-center"
+          className="data-[state=on]:bg-blue-600 data-[state=on]:text-white data-[state=off]:text-gray-700 rounded-lg p-3 text-sm w-[100px] text-center font-medium transition-all"
           value="voice"
         >
           Voice Chat
         </ToggleGroupItem>
         <ToggleGroupItem
-          className="data-[state=on]:bg-zinc-800 rounded-lg p-2 text-sm w-[90px] text-center"
+          className="data-[state=on]:bg-blue-600 data-[state=on]:text-white data-[state=off]:text-gray-700 rounded-lg p-3 text-sm w-[100px] text-center font-medium transition-all"
           value="text"
         >
           Text Chat
         </ToggleGroupItem>
       </ToggleGroup>
       {isVoiceChatActive || isVoiceChatLoading ? <AudioInput /> : <TextInput />}
-      <div className="absolute top-[-70px] right-3">
-        <Button className="!bg-zinc-700 !text-white" onClick={interrupt}>
+      <div className="absolute top-[-80px] right-3">
+        <Button className="!bg-red-600 hover:!bg-red-700 !text-white" onClick={interrupt}>
           Interrupt
         </Button>
       </div>
