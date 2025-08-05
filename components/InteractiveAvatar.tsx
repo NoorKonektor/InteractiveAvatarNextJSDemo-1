@@ -188,8 +188,21 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
         </div>
       </div>
       {sessionState === StreamingAvatarSessionState.CONNECTED && (
-        <MessageHistory />
+        <>
+          <PresetButtons
+            onSendMessage={handlePresetMessage}
+            language={language}
+          />
+          <MessageHistory />
+        </>
       )}
+      <MediaDisplay
+        mediaType={mediaDisplay.type}
+        mediaUrl={mediaDisplay.url}
+        isVisible={mediaDisplay.visible}
+        onClose={closeMediaDisplay}
+        language={language}
+      />
     </div>
   );
 }
