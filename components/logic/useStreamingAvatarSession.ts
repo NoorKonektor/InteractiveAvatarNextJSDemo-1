@@ -156,5 +156,6 @@ export const useStreamingAvatarSession = () => {
     initAvatar: init,
     startAvatar: start,
     stopAvatar: stop,
+    sendTextMessage: sendMessage,
   };
 };
