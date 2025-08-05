@@ -42,12 +42,24 @@ const DEFAULT_CONFIG: StartAvatarRequest = {
   },
 };
 
-function InteractiveAvatar() {
-  const { initAvatar, startAvatar, stopAvatar, sessionState, stream } =
+interface InteractiveAvatarProps {
+  language: string;
+}
+
+function InteractiveAvatar({ language }: InteractiveAvatarProps) {
+  const { initAvatar, startAvatar, stopAvatar, sessionState, stream, sendTextMessage } =
     useStreamingAvatarSession();
   const { startVoiceChat } = useVoiceChat();
 
-  const [config, setConfig] = useState<StartAvatarRequest>(DEFAULT_CONFIG);
+  const [config, setConfig] = useState<StartAvatarRequest>({
+    ...DEFAULT_CONFIG,
+    language: language
+  });
+  const [mediaDisplay, setMediaDisplay] = useState<{
+    type?: "video" | "image" | "map";
+    url?: string;
+    visible: boolean;
+  }>({ visible: false });
 
   const mediaStream = useRef<HTMLVideoElement>(null);
 
