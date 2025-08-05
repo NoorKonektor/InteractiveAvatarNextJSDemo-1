@@ -156,10 +156,6 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     }
   };
 
-  const closeMediaDisplay = () => {
-    setMediaDisplay({ visible: false });
-  };
-
   return (
     <div className="w-full flex flex-col gap-6">
       {/* Main content area with side-by-side layout */}
