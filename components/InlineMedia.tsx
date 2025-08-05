@@ -117,7 +117,7 @@ export default function InlineMedia({
   };
 
   return (
-    <div className="w-full bg-white rounded-xl p-4 shadow-lg border border-gray-200">
+    <div className="w-full">
       {renderMedia()}
     </div>
   );
