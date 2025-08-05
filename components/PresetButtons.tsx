@@ -82,8 +82,8 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
   };
 
   return (
-    <div className="w-full bg-zinc-800 rounded-lg p-4">
-      <h3 className="text-white text-lg font-semibold mb-4">
+    <div className="w-full bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+      <h3 className="text-gray-800 text-lg font-semibold mb-4">
         {language === "es" ? "Preguntas frecuentes" : "Quick Questions"}
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -91,10 +91,10 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
           <Button
             key={button.id}
             onClick={() => handleButtonClick(button)}
-            className={`text-sm p-3 h-auto whitespace-normal transition-all ${
-              selectedButton === button.id 
-                ? "bg-blue-600 scale-95" 
-                : "bg-zinc-700 hover:bg-zinc-600"
+            className={`text-sm p-4 h-auto whitespace-normal transition-all rounded-lg font-medium ${
+              selectedButton === button.id
+                ? "bg-blue-600 text-white scale-95 shadow-lg"
+                : "bg-gray-50 text-gray-700 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300"
             }`}
           >
             {language === "es" ? button.textEs : button.textEn}
