@@ -138,6 +138,28 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     }
   }, [mediaStream, stream]);
 
+  useEffect(() => {
+    setConfig(prev => ({ ...prev, language: language }));
+  }, [language]);
+
+  const handlePresetMessage = async (message: string, mediaType?: string, mediaUrl?: string) => {
+    if (sessionState === StreamingAvatarSessionState.CONNECTED && sendTextMessage) {
+      await sendTextMessage(message);
+
+      if (mediaType && mediaUrl) {
+        setMediaDisplay({
+          type: mediaType as "video" | "image" | "map",
+          url: mediaUrl,
+          visible: true
+        });
+      }
+    }
+  };
+
+  const closeMediaDisplay = () => {
+    setMediaDisplay({ visible: false });
+  };
+
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col rounded-xl bg-zinc-900 overflow-hidden">
