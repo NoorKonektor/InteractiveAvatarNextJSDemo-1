@@ -11,6 +11,7 @@ import {
 } from "./context";
 import { useVoiceChat } from "./useVoiceChat";
 import { useMessageHistory } from "./useMessageHistory";
+import { useTextChat } from "./useTextChat";
 
 export const useStreamingAvatarSession = () => {
   const {
