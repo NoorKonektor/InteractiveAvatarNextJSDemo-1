@@ -24,10 +24,12 @@ import MediaDisplay from "./MediaDisplay";
 
 import { AVATARS } from "@/app/lib/constants";
 
+const KNOWLEDGE_BASE_ID = "040ec533171d4cc191041914213cc97d";
+
 const DEFAULT_CONFIG: StartAvatarRequest = {
   quality: AvatarQuality.Low,
   avatarName: AVATARS[0].avatar_id,
-  knowledgeId: undefined,
+  knowledgeId: KNOWLEDGE_BASE_ID,
   voice: {
     rate: 1.5,
     emotion: VoiceEmotion.EXCITED,
