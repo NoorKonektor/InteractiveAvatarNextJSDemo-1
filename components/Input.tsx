@@ -10,7 +10,7 @@ interface InputProps {
 export const Input = (props: InputProps) => {
   return (
     <input
-      className={`w-full text-white text-sm bg-zinc-700 py-2 px-6 rounded-lg outline-none ${props.className}`}
+      className={`w-full text-gray-900 text-sm bg-white border border-gray-300 py-3 px-4 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${props.className}`}
       placeholder={props.placeholder}
       type="text"
       value={props.value || ""}
