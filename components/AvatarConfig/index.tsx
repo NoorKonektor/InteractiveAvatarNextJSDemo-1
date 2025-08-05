@@ -166,9 +166,9 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
               }
             />
           </Field>
-          <h1 className="text-zinc-100 w-full text-center mt-5">
+          <h3 className="text-gray-800 font-medium w-full text-center mt-5 mb-2">
             STT Settings
-          </h1>
+          </h3>
           <Field label="Provider">
             <Select
               isSelected={(option) => option === config.sttSettings?.provider}
