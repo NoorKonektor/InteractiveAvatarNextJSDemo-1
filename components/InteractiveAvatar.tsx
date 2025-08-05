@@ -207,10 +207,10 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   );
 }
 
-export default function InteractiveAvatarWrapper() {
+export default function InteractiveAvatarWrapper({ language = "en" }: { language?: string }) {
   return (
     <StreamingAvatarProvider basePath={process.env.NEXT_PUBLIC_BASE_API_URL}>
-      <InteractiveAvatar />
+      <InteractiveAvatar language={language} />
     </StreamingAvatarProvider>
   );
 }
