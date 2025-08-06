@@ -88,6 +88,15 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
   const startSessionV2 = useMemoizedFn(async (isVoiceChat: boolean) => {
     try {
+      // Check microphone permission before starting voice chat
+      if (isVoiceChat && !microphonePermission.granted) {
+        setMicrophonePermission(prev => ({
+          ...prev,
+          error: "Microphone permission is required for voice chat"
+        }));
+        return;
+      }
+
       const newToken = await fetchAccessToken();
       const avatar = initAvatar(newToken);
 
@@ -129,6 +138,13 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
       }
     } catch (error) {
       console.error("Error starting avatar session:", error);
+      if (error instanceof Error && error.name === 'NotAllowedError') {
+        setMicrophonePermission(prev => ({
+          ...prev,
+          granted: false,
+          error: "Microphone access was denied. Please allow microphone access and try again."
+        }));
+      }
     }
   });
 
