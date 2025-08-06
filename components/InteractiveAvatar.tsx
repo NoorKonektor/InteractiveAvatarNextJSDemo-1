@@ -149,6 +149,19 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     setConfig(prev => ({ ...prev, language: language }));
   }, [language]);
 
+  useEffect(() => {
+    // Check microphone permission on component mount
+    const checkPermission = async () => {
+      try {
+        const hasPermission = await checkMicrophonePermission();
+        setMicrophonePermission({ granted: hasPermission, checked: true });
+      } catch (error) {
+        setMicrophonePermission({ granted: false, checked: true });
+      }
+    };
+    checkPermission();
+  }, []);
+
   const handlePresetMessage = async (message: string, mediaType?: string, mediaUrl?: string) => {
     if (sessionState === StreamingAvatarSessionState.CONNECTED && sendTextMessage) {
       await sendTextMessage(message);
