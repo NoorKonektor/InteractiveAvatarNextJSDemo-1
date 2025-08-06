@@ -70,6 +70,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     error?: string;
   }>({ granted: false, checked: false });
   const [showBookingGuide, setShowBookingGuide] = useState(false);
+  const [currentGuideType, setCurrentGuideType] = useState<"location" | "office-hours" | "parking" | "services" | "insurance" | null>(null);
 
   const mediaStream = useRef<HTMLVideoElement>(null);
 
