@@ -234,12 +234,13 @@ export default function BookingGuide({ language, isVisible, onClose }: BookingGu
 
         {/* Action buttons */}
         <div className="mt-6 flex gap-3">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-sm flex-1">
-            {text.bookNowButton}
+          <button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex-1 relative overflow-hidden group">
+            <span className="relative z-10">{text.bookNowButton}</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
-          <button 
+          <button
             onClick={onClose}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-md transform hover:scale-105"
           >
             {text.closeButton}
           </button>
