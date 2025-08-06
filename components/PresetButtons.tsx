@@ -91,8 +91,8 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
             onClick={() => handleButtonClick(button)}
             className={`text-sm p-4 h-auto whitespace-normal transition-all rounded-lg font-medium ${
               selectedButton === button.id
-                ? "bg-blue-600 text-white scale-95 shadow-lg"
-                : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 shadow-sm"
+                ? "bg-blue-600 hover:bg-blue-700 text-white scale-95 shadow-lg border-0"
+                : "bg-white hover:bg-blue-50 text-gray-700 hover:text-blue-700 border border-gray-200 hover:border-blue-300 shadow-sm"
             }`}
           >
             {language === "es" ? button.textEs : button.textEn}
