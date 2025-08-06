@@ -62,6 +62,11 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     url?: string;
     visible: boolean;
   }>({ visible: false });
+  const [microphonePermission, setMicrophonePermission] = useState<{
+    granted: boolean;
+    checked: boolean;
+    error?: string;
+  }>({ granted: false, checked: false });
 
   const mediaStream = useRef<HTMLVideoElement>(null);
 
