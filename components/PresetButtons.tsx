@@ -22,9 +22,7 @@ const PRESET_BUTTONS: PresetButton[] = [
     id: "appointment",
     textEn: "How to book an appointment",
     textEs: "Cómo reservar una cita",
-    message: "How can I book an appointment?",
-    mediaType: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&auto=format"
+    message: "How can I book an appointment?"
   },
   {
     id: "dentist-location",
