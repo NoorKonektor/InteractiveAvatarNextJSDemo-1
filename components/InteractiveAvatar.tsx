@@ -68,6 +68,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     checked: boolean;
     error?: string;
   }>({ granted: false, checked: false });
+  const [showBookingGuide, setShowBookingGuide] = useState(false);
 
   const mediaStream = useRef<HTMLVideoElement>(null);
 
