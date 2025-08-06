@@ -183,19 +183,37 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   }, []);
 
   const handlePresetMessage = async (message: string, mediaType?: string, mediaUrl?: string) => {
+    // Always send the message if connected
     if (sessionState === StreamingAvatarSessionState.CONNECTED && sendTextMessage) {
       await sendTextMessage(message);
+    }
 
-      // Check if this is an appointment booking question
-      if (message.toLowerCase().includes("appointment") || message.toLowerCase().includes("book")) {
-        setShowBookingGuide(true);
-        setMediaDisplay({
-          type: undefined,
-          url: undefined,
-          visible: false
-        });
-      } else if (mediaType && mediaUrl) {
-        setShowBookingGuide(false);
+    // Determine which guide to show based on message content
+    const messageLower = message.toLowerCase();
+
+    if (messageLower.includes("appointment") || messageLower.includes("book")) {
+      setShowBookingGuide(true);
+      setCurrentGuideType(null);
+    } else if (messageLower.includes("dentist room") || messageLower.includes("situated") || messageLower.includes("location")) {
+      setShowBookingGuide(false);
+      setCurrentGuideType("location");
+    } else if (messageLower.includes("office hours") || messageLower.includes("contact")) {
+      setShowBookingGuide(false);
+      setCurrentGuideType("office-hours");
+    } else if (messageLower.includes("parking")) {
+      setShowBookingGuide(false);
+      setCurrentGuideType("parking");
+    } else if (messageLower.includes("services") || messageLower.includes("costs")) {
+      setShowBookingGuide(false);
+      setCurrentGuideType("services");
+    } else if (messageLower.includes("insurance")) {
+      setShowBookingGuide(false);
+      setCurrentGuideType("insurance");
+    } else {
+      // Default behavior for other messages
+      setShowBookingGuide(false);
+      setCurrentGuideType(null);
+      if (mediaType && mediaUrl) {
         setMediaDisplay({
           type: mediaType as "video" | "image" | "map",
           url: mediaUrl,
@@ -226,7 +244,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
           "🗣️ Voice & text chat with AI avatar",
           "🌍 English & Spanish support",
           "❓ Quick preset questions",
-          "📍 Interactive maps & media",
+          "��� Interactive maps & media",
           "🏥 Perfect for medical offices"
         ],
         note: "Choose your language in the top-right corner and start a conversation!"
