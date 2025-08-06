@@ -322,18 +322,20 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
           </div>
         </div>
 
-        {/* Preset buttons and message history */}
+        {/* Preset buttons - always show when connected */}
         {sessionState === StreamingAvatarSessionState.CONNECTED && (
-          <div className="border-t border-gray-200 bg-gray-50">
-            <div className="p-6">
-              <PresetButtons
-                onSendMessage={handlePresetMessage}
-                language={language}
-              />
-            </div>
-            <div className="border-t border-gray-200 bg-white">
-              <MessageHistory />
-            </div>
+          <div className="border-t border-gray-200 bg-gray-50 p-6">
+            <PresetButtons
+              onSendMessage={handlePresetMessage}
+              language={language}
+            />
+          </div>
+        )}
+
+        {/* Message history */}
+        {sessionState === StreamingAvatarSessionState.CONNECTED && (
+          <div className="border-t border-gray-200 bg-white">
+            <MessageHistory />
           </div>
         )}
       </div>
