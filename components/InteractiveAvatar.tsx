@@ -184,7 +184,16 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     if (sessionState === StreamingAvatarSessionState.CONNECTED && sendTextMessage) {
       await sendTextMessage(message);
 
-      if (mediaType && mediaUrl) {
+      // Check if this is an appointment booking question
+      if (message.toLowerCase().includes("appointment") || message.toLowerCase().includes("book")) {
+        setShowBookingGuide(true);
+        setMediaDisplay({
+          type: undefined,
+          url: undefined,
+          visible: false
+        });
+      } else if (mediaType && mediaUrl) {
+        setShowBookingGuide(false);
         setMediaDisplay({
           type: mediaType as "video" | "image" | "map",
           url: mediaUrl,
