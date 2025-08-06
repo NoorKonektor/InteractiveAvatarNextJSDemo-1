@@ -192,6 +192,14 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     }
   };
 
+  const handleMicrophonePermissionGranted = () => {
+    setMicrophonePermission({ granted: true, checked: true });
+  };
+
+  const handleMicrophonePermissionDenied = (error: string) => {
+    setMicrophonePermission({ granted: false, checked: true, error });
+  };
+
   const getInstructionsContent = () => {
     const content = {
       en: {
