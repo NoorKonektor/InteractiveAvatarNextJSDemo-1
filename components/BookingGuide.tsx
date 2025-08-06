@@ -154,24 +154,34 @@ export default function BookingGuide({ language, isVisible, onClose }: BookingGu
 
         {/* Progress bar */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-center mb-3">
             {BOOKING_STEPS.map((_, index) => (
               <div
                 key={index}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                className={`relative w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500 ${
                   index <= currentStep
-                    ? "bg-blue-600 text-white scale-110"
-                    : "bg-gray-200 text-gray-500"
+                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white scale-110 shadow-lg animate-float"
+                    : "bg-gray-200 text-gray-500 hover:bg-gray-300"
                 }`}
               >
-                {index + 1}
+                {index <= currentStep && (
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 animate-pulse opacity-75"></div>
+                )}
+                <span className="relative z-10">{index + 1}</span>
+                {index === currentStep && (
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
+                )}
               </div>
             ))}
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-200 rounded-full h-3 shadow-inner">
             <div
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full transition-all duration-700 ease-out"
-              style={{ width: `${((currentStep + 1) / BOOKING_STEPS.length) * 100}%` }}
+              className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+              style={{
+                width: `${((currentStep + 1) / BOOKING_STEPS.length) * 100}%`,
+                backgroundSize: '200% 100%',
+                animation: 'gradient-shift 2s ease infinite'
+              }}
             />
           </div>
         </div>
