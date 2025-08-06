@@ -358,6 +358,13 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                 isVisible={showBookingGuide}
                 onClose={handleCloseBookingGuide}
               />
+            ) : currentGuideType ? (
+              <AnimatedGuides
+                guideType={currentGuideType}
+                language={language}
+                isVisible={!!currentGuideType}
+                onClose={handleCloseAnimatedGuide}
+              />
             ) : (
               <InlineMedia
                 mediaType={mediaDisplay.type}
