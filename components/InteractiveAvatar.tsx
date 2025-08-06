@@ -273,14 +273,38 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
               {sessionState === StreamingAvatarSessionState.CONNECTED ? (
                 <AvatarControls />
               ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
-                <div className="flex flex-row gap-4">
-                  <Button onClick={() => startSessionV2(true)}>
-                    Start Voice Chat
-                  </Button>
-                  <Button onClick={() => startSessionV2(false)}>
-                    Start Text Chat
-                  </Button>
-                </div>
+                <>
+                  {/* Show microphone permission request if needed */}
+                  {microphonePermission.checked && !microphonePermission.granted && (
+                    <div className="w-full mb-4">
+                      <MicrophonePermissionRequest
+                        onPermissionGranted={handleMicrophonePermissionGranted}
+                        onPermissionDenied={handleMicrophonePermissionDenied}
+                        language={language}
+                      />
+                    </div>
+                  )}
+
+                  {/* Show error if microphone permission was denied */}
+                  {microphonePermission.error && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-sm text-red-700 text-center">
+                      {microphonePermission.error}
+                    </div>
+                  )}
+
+                  <div className="flex flex-row gap-4">
+                    <Button
+                      onClick={() => startSessionV2(true)}
+                      disabled={!microphonePermission.granted}
+                      className={!microphonePermission.granted ? "opacity-50 cursor-not-allowed" : ""}
+                    >
+                      Start Voice Chat
+                    </Button>
+                    <Button onClick={() => startSessionV2(false)}>
+                      Start Text Chat
+                    </Button>
+                  </div>
+                </>
               ) : (
                 <LoadingIcon />
               )}
