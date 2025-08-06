@@ -328,12 +328,20 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
           {/* Media Section */}
           <div className="flex flex-col">
-            <InlineMedia
-              mediaType={mediaDisplay.type}
-              mediaUrl={mediaDisplay.url}
-              isVisible={true}
-              language={language}
-            />
+            {showBookingGuide ? (
+              <BookingGuide
+                language={language}
+                isVisible={showBookingGuide}
+                onClose={handleCloseBookingGuide}
+              />
+            ) : (
+              <InlineMedia
+                mediaType={mediaDisplay.type}
+                mediaUrl={mediaDisplay.url}
+                isVisible={true}
+                language={language}
+              />
+            )}
           </div>
         </div>
 
