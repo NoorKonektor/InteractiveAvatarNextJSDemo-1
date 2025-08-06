@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "./Button";
 import { requestMicrophonePermission, getMicrophonePermissionError } from "./utils/microphonePermissions";
+import MicrophoneTroubleshooting from "./MicrophoneTroubleshooting";
 
 interface MicrophonePermissionRequestProps {
   onPermissionGranted: () => void;
