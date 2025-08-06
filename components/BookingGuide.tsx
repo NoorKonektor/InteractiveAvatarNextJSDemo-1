@@ -154,33 +154,39 @@ export default function BookingGuide({ language, isVisible, onClose }: BookingGu
         </div>
 
         {/* Current step display */}
-        <div className={`transition-all duration-300 ${isAnimating ? "opacity-0 transform scale-95" : "opacity-100 transform scale-100"}`}>
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+        <div className={`transition-all duration-500 ease-in-out ${isAnimating ? "opacity-0 transform scale-95 translate-y-2" : "opacity-100 transform scale-100 translate-y-0"}`}>
+          <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-start gap-4">
-              <div className="text-4xl animate-bounce">
-                {BOOKING_STEPS[currentStep].icon}
+              <div className="relative">
+                <div className="text-4xl animate-bounce">
+                  {BOOKING_STEPS[currentStep].icon}
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
               </div>
               <div className="flex-1">
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                  {language === "es" 
-                    ? BOOKING_STEPS[currentStep].titleEs 
+                <h4 className="text-lg font-semibold text-gray-800 mb-2 animate-fade-in">
+                  {language === "es"
+                    ? BOOKING_STEPS[currentStep].titleEs
                     : BOOKING_STEPS[currentStep].titleEn
                   }
                 </h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {language === "es" 
-                    ? BOOKING_STEPS[currentStep].descriptionEs 
+                <p className="text-gray-600 text-sm leading-relaxed animate-slide-in">
+                  {language === "es"
+                    ? BOOKING_STEPS[currentStep].descriptionEs
                     : BOOKING_STEPS[currentStep].descriptionEn
                   }
                 </p>
-                
-                {/* Action visualization */}
-                <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+
+                {/* Action visualization with enhanced animation */}
+                <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 transform hover:scale-105 transition-transform duration-200">
                   <div className="flex items-center gap-2 text-blue-700">
-                    <span className="text-lg">{getActionIcon(BOOKING_STEPS[currentStep].action)}</span>
+                    <span className="text-lg animate-pulse">{getActionIcon(BOOKING_STEPS[currentStep].action)}</span>
                     <span className="text-sm font-medium">
                       {language === "es" ? "Acción requerida" : "Action required"}
                     </span>
+                    <div className="ml-auto">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping"></div>
+                    </div>
                   </div>
                 </div>
               </div>
