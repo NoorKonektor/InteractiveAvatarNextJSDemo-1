@@ -235,6 +235,10 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     setShowBookingGuide(false);
   };
 
+  const handleCloseAnimatedGuide = () => {
+    setCurrentGuideType(null);
+  };
+
   const getInstructionsContent = () => {
     const content = {
       en: {
@@ -244,7 +248,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
           "🗣️ Voice & text chat with AI avatar",
           "🌍 English & Spanish support",
           "❓ Quick preset questions",
-          "��� Interactive maps & media",
+          "📍 Interactive maps & media",
           "🏥 Perfect for medical offices"
         ],
         note: "Choose your language in the top-right corner and start a conversation!"
