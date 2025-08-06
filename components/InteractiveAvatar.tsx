@@ -22,6 +22,7 @@ import { MessageHistory } from "./AvatarSession/MessageHistory";
 import PresetButtons from "./PresetButtons";
 import InlineMedia from "./InlineMedia";
 import MicrophonePermissionRequest from "./MicrophonePermissionRequest";
+import BookingGuide from "./BookingGuide";
 import { checkMicrophonePermission } from "./utils/microphonePermissions";
 
 import { AVATARS } from "@/app/lib/constants";
