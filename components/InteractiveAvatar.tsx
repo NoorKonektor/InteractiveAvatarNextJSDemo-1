@@ -211,6 +211,10 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     setMicrophonePermission({ granted: false, checked: true, error });
   };
 
+  const handleCloseBookingGuide = () => {
+    setShowBookingGuide(false);
+  };
+
   const getInstructionsContent = () => {
     const content = {
       en: {
