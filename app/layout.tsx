@@ -31,7 +31,10 @@ export default function RootLayout({
       className={`${fontSans.variable} ${fontMono.variable} font-sans`}
       lang="en"
     >
-      <head />
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="Permissions-Policy" content="microphone=*, camera=*, display-capture=*" />
+      </head>
       <body className="min-h-screen bg-gray-50 text-gray-900">
         <main className="relative flex flex-col gap-6 h-screen w-screen">
           {children}
