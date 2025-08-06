@@ -17,12 +17,18 @@ export const useVoiceChat = () => {
     async (isInputAudioMuted?: boolean) => {
       if (!avatarRef.current) return;
       setIsVoiceChatLoading(true);
-      await avatarRef.current?.startVoiceChat({
-        isInputAudioMuted,
-      });
-      setIsVoiceChatLoading(false);
-      setIsVoiceChatActive(true);
-      setIsMuted(!!isInputAudioMuted);
+      try {
+        await avatarRef.current?.startVoiceChat({
+          isInputAudioMuted,
+        });
+        setIsVoiceChatLoading(false);
+        setIsVoiceChatActive(true);
+        setIsMuted(!!isInputAudioMuted);
+      } catch (error) {
+        setIsVoiceChatLoading(false);
+        console.error("Error starting voice chat:", error);
+        throw error; // Re-throw to be handled by the calling component
+      }
     },
     [avatarRef, setIsMuted, setIsVoiceChatActive, setIsVoiceChatLoading],
   );
