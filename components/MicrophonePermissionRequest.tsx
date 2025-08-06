@@ -95,6 +95,8 @@ export default function MicrophonePermissionRequest({
       </Button>
 
       <p className="text-xs text-gray-500">{text.note}</p>
+
+      <MicrophoneTroubleshooting language={language} />
     </div>
   );
 }
