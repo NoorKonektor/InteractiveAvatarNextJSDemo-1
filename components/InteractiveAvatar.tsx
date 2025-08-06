@@ -183,13 +183,16 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   }, []);
 
   const handlePresetMessage = async (message: string, mediaType?: string, mediaUrl?: string) => {
-    // Always send the message if connected
+    // Send the message to avatar if connected
     if (sessionState === StreamingAvatarSessionState.CONNECTED && sendTextMessage) {
       await sendTextMessage(message);
     }
 
-    // Determine which guide to show based on message content
+    // Always show guides regardless of connection status
     const messageLower = message.toLowerCase();
+
+    // Reset previous states
+    setMediaDisplay({ type: undefined, url: undefined, visible: false });
 
     if (messageLower.includes("appointment") || messageLower.includes("book")) {
       setShowBookingGuide(true);
@@ -210,7 +213,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
       setShowBookingGuide(false);
       setCurrentGuideType("insurance");
     } else {
-      // Default behavior for other messages
+      // Default behavior for other messages - show media if available
       setShowBookingGuide(false);
       setCurrentGuideType(null);
       if (mediaType && mediaUrl) {
