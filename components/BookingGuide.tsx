@@ -127,6 +127,11 @@ export default function BookingGuide({ language, isVisible, onClose }: BookingGu
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-5px); }
         }
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
         .animate-fade-in {
           animation: fade-in 0.6s ease-out;
         }
