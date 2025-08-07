@@ -380,7 +380,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
         </div>
 
         {/* Preset buttons - always visible */}
-        <div className="border-t border-gray-200 bg-gray-50 p-6">
+        <div className="border-t border-gray-200 bg-gray-50 p-8">
           <PresetButtons
             onSendMessage={handlePresetMessage}
             language={language}
