@@ -301,17 +301,17 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
         </div>
 
         {/* Main content area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
           {/* Avatar Section */}
           <div className="flex flex-col">
-            <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl mb-4">
+            <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl mb-6">
               {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
                 <AvatarVideo ref={mediaStream} />
               ) : (
                 <AvatarConfig config={config} onConfigChange={setConfig} />
               )}
             </div>
-            <div className="flex flex-col gap-3 items-center justify-center p-4 bg-gray-50 rounded-xl">
+            <div className="flex flex-col gap-4 items-center justify-center p-6 bg-gray-50 rounded-xl">
               {sessionState === StreamingAvatarSessionState.CONNECTED ? (
                 <AvatarControls />
               ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
