@@ -81,15 +81,15 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
 
   return (
     <div className="w-full">
-      <h3 className="text-gray-800 text-lg font-semibold mb-4">
+      <h3 className="text-gray-800 text-xl font-semibold mb-6">
         {language === "es" ? "Preguntas frecuentes" : "Quick Questions"}
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {PRESET_BUTTONS.map((button) => (
           <Button
             key={button.id}
             onClick={() => handleButtonClick(button)}
-            className={`text-sm p-4 h-auto whitespace-normal transition-all rounded-lg font-medium ${
+            className={`text-base p-6 h-auto whitespace-normal transition-all rounded-lg font-medium ${
               selectedButton === button.id
                 ? "bg-blue-600 hover:bg-blue-700 text-white scale-95 shadow-lg border-0"
                 : "bg-white hover:bg-blue-50 text-gray-700 hover:text-blue-700 border border-gray-200 hover:border-blue-300 shadow-sm"
