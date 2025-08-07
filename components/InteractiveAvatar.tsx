@@ -279,12 +279,12 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
       {/* Unified card containing everything */}
       <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
         {/* Header with instructions */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-100 p-6 border-b border-gray-200">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-100 p-8 border-b border-gray-200">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">{instructionsText.title}</h2>
-              <p className="text-blue-600 font-medium mb-3">{instructionsText.subtitle}</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-700">
+              <h2 className="text-3xl font-bold text-gray-800 mb-3">{instructionsText.title}</h2>
+              <p className="text-blue-600 font-medium mb-4 text-lg">{instructionsText.subtitle}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-base text-gray-700">
                 {instructionsText.features.map((feature, index) => (
                   <div key={index} className="flex items-center">
                     {feature}
@@ -292,8 +292,8 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                 ))}
               </div>
             </div>
-            <div className="lg:w-80">
-              <div className="text-sm text-amber-800 bg-amber-50 rounded-lg p-3 border border-amber-200">
+            <div className="lg:w-96">
+              <div className="text-base text-amber-800 bg-amber-50 rounded-lg p-4 border border-amber-200">
                 💡 {instructionsText.note}
               </div>
             </div>
