@@ -53,7 +53,11 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
   }, [config.avatarName]);
 
   return (
-    <div className="relative flex flex-col gap-4 w-[550px] py-8 max-h-full overflow-y-auto px-4">
+    <div className="relative flex flex-col gap-4 w-full max-w-md py-8 max-h-full overflow-y-auto px-6 text-gray-900">
+      <div className="text-center mb-4">
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">Configure Avatar</h2>
+        <p className="text-sm text-gray-600">Customize your AI assistant settings</p>
+      </div>
       <Field label="Custom Knowledge Base ID">
         <Input
           placeholder="Enter custom knowledge base ID"
@@ -128,9 +132,9 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
       </Field>
       {showMore && (
         <>
-          <h1 className="text-zinc-100 w-full text-center mt-5">
+          <h3 className="text-gray-800 font-medium w-full text-center mt-5 mb-2">
             Voice Settings
-          </h1>
+          </h3>
           <Field label="Custom Voice ID">
             <Input
               placeholder="Enter custom voice ID"
@@ -162,9 +166,9 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
               }
             />
           </Field>
-          <h1 className="text-zinc-100 w-full text-center mt-5">
+          <h3 className="text-gray-800 font-medium w-full text-center mt-5 mb-2">
             STT Settings
-          </h1>
+          </h3>
           <Field label="Provider">
             <Select
               isSelected={(option) => option === config.sttSettings?.provider}
@@ -182,7 +186,7 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
         </>
       )}
       <button
-        className="text-zinc-400 text-sm cursor-pointer w-full text-center bg-transparent"
+        className="text-blue-600 hover:text-blue-700 text-sm cursor-pointer w-full text-center bg-transparent font-medium mt-2"
         onClick={() => setShowMore(!showMore)}
       >
         {showMore ? "Show less" : "Show more..."}

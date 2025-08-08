@@ -1,57 +1,32 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 
-import { GithubIcon, HeyGenLogo } from "./Icons";
+interface NavBarProps {
+  onLanguageChange: (language: string) => void;
+  currentLanguage: string;
+}
 
-export default function NavBar() {
+export default function NavBar({ onLanguageChange, currentLanguage }: NavBarProps) {
   return (
     <>
-      <div className="flex flex-row justify-between items-center w-[1000px] m-auto p-6">
-        <div className="flex flex-row items-center gap-4">
-          <Link href="https://app.heygen.com/" target="_blank">
-            <HeyGenLogo />
-          </Link>
-          <div className="bg-gradient-to-br from-sky-300 to-indigo-500 bg-clip-text">
-            <p className="text-xl font-semibold text-transparent">
-              HeyGen Interactive Avatar SDK NextJS Demo
+      <div className="flex flex-row justify-between items-center max-w-[1600px] m-auto p-8 bg-white/80 backdrop-blur-sm rounded-b-xl shadow-sm border-b border-gray-200">
+        <div className="flex flex-row items-center gap-6">
+          <div className="bg-gradient-to-br from-blue-600 to-indigo-700 bg-clip-text">
+            <p className="text-3xl font-bold text-transparent">
+              Virtual Meeting Assistant
             </p>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-6">
-          <Link
-            href="https://labs.heygen.com/interactive-avatar"
-            target="_blank"
+        <div className="flex flex-row items-center gap-8">
+          <select
+            value={currentLanguage}
+            onChange={(e) => onLanguageChange(e.target.value)}
+            className="bg-white text-gray-900 px-6 py-3 text-lg rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
-            Avatars
-          </Link>
-          <Link
-            href="https://docs.heygen.com/reference/list-voices-v2"
-            target="_blank"
-          >
-            Voices
-          </Link>
-          <Link
-            href="https://docs.heygen.com/reference/new-session-copy"
-            target="_blank"
-          >
-            API Docs
-          </Link>
-          <Link
-            href="https://help.heygen.com/en/articles/9182113-interactive-avatar-101-your-ultimate-guide"
-            target="_blank"
-          >
-            Guide
-          </Link>
-          <Link
-            aria-label="Github"
-            className="flex flex-row justify-center gap-1 text-foreground"
-            href="https://github.com/HeyGen-Official/StreamingAvatarSDK"
-            target="_blank"
-          >
-            <GithubIcon className="text-default-500" />
-            SDK
-          </Link>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
         </div>
       </div>
     </>

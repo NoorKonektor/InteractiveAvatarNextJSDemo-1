@@ -11,6 +11,7 @@ import {
 } from "./context";
 import { useVoiceChat } from "./useVoiceChat";
 import { useMessageHistory } from "./useMessageHistory";
+import { useTextChat } from "./useTextChat";
 
 export const useStreamingAvatarSession = () => {
   const {
@@ -30,6 +31,7 @@ export const useStreamingAvatarSession = () => {
     clearMessages,
   } = useStreamingAvatarContext();
   const { stopVoiceChat } = useVoiceChat();
+  const { sendMessage } = useTextChat();
 
   useMessageHistory();
 
@@ -154,5 +156,6 @@ export const useStreamingAvatarSession = () => {
     initAvatar: init,
     startAvatar: start,
     stopAvatar: stop,
+    sendTextMessage: sendMessage,
   };
 };

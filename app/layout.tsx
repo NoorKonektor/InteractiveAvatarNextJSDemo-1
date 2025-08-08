@@ -2,8 +2,6 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Fira_Code as FontMono, Inter as FontSans } from "next/font/google";
 
-import NavBar from "@/components/NavBar";
-
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -16,12 +14,10 @@ const fontMono = FontMono({
 
 export const metadata: Metadata = {
   title: {
-    default: "HeyGen Interactive Avatar SDK Demo",
-    template: `%s - HeyGen Interactive Avatar SDK Demo`,
+    default: "Virtual Meeting Assistant",
+    template: `%s - Virtual Meeting Assistant`,
   },
-  icons: {
-    icon: "/heygen-logo.png",
-  },
+  description: "AI-powered virtual meeting assistant with multilingual support",
 };
 
 export default function RootLayout({
@@ -35,10 +31,12 @@ export default function RootLayout({
       className={`${fontSans.variable} ${fontMono.variable} font-sans`}
       lang="en"
     >
-      <head />
-      <body className="min-h-screen bg-black text-white">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="Permissions-Policy" content="microphone=*, camera=*, display-capture=*" />
+      </head>
+      <body className="min-h-screen bg-gray-50 text-gray-900">
         <main className="relative flex flex-col gap-6 h-screen w-screen">
-          <NavBar />
           {children}
         </main>
       </body>
