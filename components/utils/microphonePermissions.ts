@@ -12,7 +12,7 @@ export const checkMicrophonePermission = async (): Promise<boolean> => {
     }
 
     // Fallback: try to access microphone directly
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    if ('mediaDevices' in navigator && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         stream.getTracks().forEach(track => track.stop());
