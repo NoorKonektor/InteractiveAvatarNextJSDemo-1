@@ -35,7 +35,7 @@ export const requestMicrophonePermission = async (): Promise<MediaStream | null>
     throw new Error('Navigator not available in this environment');
   }
 
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+  if (!('mediaDevices' in navigator) || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     throw new Error('MediaDevices API not supported');
   }
 
