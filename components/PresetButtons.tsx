@@ -149,19 +149,21 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
               
               {/* Main Button */}
               <button
-                onClick={() => handleButtonClick(button)}
+                onClick={(e) => handleButtonClick(button, e)}
                 onMouseEnter={() => setHoveredButton(button.id)}
                 onMouseLeave={() => setHoveredButton(null)}
                 className={`
                   relative w-full p-6 rounded-2xl font-medium text-left
-                  transition-all duration-500 transform group-hover:scale-105 
-                  shadow-lg hover:shadow-2xl backdrop-blur-md
-                  ${isSelected 
-                    ? `bg-gradient-to-br ${button.color} text-white scale-95 shadow-2xl animate-pulse` 
+                  transition-all duration-500 transform group-hover:scale-105
+                  shadow-lg hover:shadow-2xl backdrop-blur-md cursor-pointer
+                  ${isSelected
+                    ? `bg-gradient-to-br ${button.color} text-white scale-95 shadow-2xl animate-pulse`
                     : 'bg-gradient-to-br from-white/90 to-gray-50/90 hover:from-white hover:to-blue-50/50 text-gray-700 border border-white/60'
                   }
                   animate-slideInUp
+                  z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
                 `}
+                style={{ pointerEvents: 'all' }}
               >
                 {/* Background Pattern */}
                 <div className={`
