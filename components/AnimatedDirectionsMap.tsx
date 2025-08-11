@@ -267,13 +267,15 @@ const animationRef = useRef<NodeJS>();
     es: {
       title: "🗺️ Ruta a la Clínica Dental",
       walking: "🚶‍♂️ Direcciones a pie",
-      duration: "⏱️ Tiempo estimado: 5-8 minutos",
-      distance: "📏 Distancia: ~600 metros",
+      duration: "⏱️ Tiempo estimado: 8-12 minutos",
+      distance: "📏 Distancia: ~950 metros",
       instructions: [
         "Salga del edificio y diríjase al norte",
+        "Camine derecho por 3 cuadras",
         "Gire a la derecha en la calle Main",
-        "Camine 2 cuadras en línea recta",
-        "La clínica está a su izquierda (marcador rojo)"
+        "Continue por 2 cuadras más",
+        "Gire a la izquierda en la farmacia",
+        "La clínica está 50m adelante a su derecha (marcador rojo)"
       ],
       closeBtn: "Cerrar Direcciones",
       loading: "🗺️ Cargando mapa interactivo...",
