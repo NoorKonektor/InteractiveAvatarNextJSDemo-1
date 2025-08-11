@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "./Button";
 import { requestMicrophonePermission, getMicrophonePermissionError } from "./utils/microphonePermissions";
-import MicrophoneTroubleshooting from "./MicrophoneTroubleshooting";
 
 interface MicrophonePermissionRequestProps {
   onPermissionGranted: () => void;
@@ -37,52 +36,21 @@ export default function MicrophonePermissionRequest({
 
   const content = {
     en: {
-      title: "Microphone Access Required",
-      description: "To use voice chat with the AI avatar, we need access to your microphone.",
-      instructions: [
-        "Click 'Allow Microphone Access' below",
-        "When prompted by your browser, click 'Allow'",
-        "If blocked, click the microphone icon in your browser's address bar"
-      ],
-      buttonText: "Allow Microphone Access",
-      note: "Your audio is only used for the AI conversation and is not recorded or stored."
+      buttonText: "Allow Microphone Access"
     },
     es: {
-      title: "Acceso al Micrófono Requerido",
-      description: "Para usar el chat de voz con el avatar de IA, necesitamos acceso a tu micrófono.",
-      instructions: [
-        "Haz clic en 'Permitir Acceso al Micrófono' abajo",
-        "Cuando tu navegador te pregunte, haz clic en 'Permitir'",
-        "Si está bloqueado, haz clic en el ícono del micrófono en la barra de direcciones"
-      ],
-      buttonText: "Permitir Acceso al Micrófono",
-      note: "Tu audio solo se usa para la conversación con IA y no se graba ni almacena."
+      buttonText: "Permitir Acceso al Micrófono"
     }
   };
 
   const text = content[language as keyof typeof content] || content.en;
 
   return (
-    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
-      <div className="text-4xl mb-4">🎤</div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-3">{text.title}</h3>
-      <p className="text-gray-600 mb-4">{text.description}</p>
-      
-      <div className="bg-white rounded-lg p-4 mb-4 text-left">
-        <p className="font-medium text-gray-700 mb-2">
-          {language === "es" ? "Instrucciones:" : "Instructions:"}
-        </p>
-        <ol className="list-decimal list-inside space-y-1 text-sm text-gray-600">
-          {text.instructions.map((instruction, index) => (
-            <li key={index}>{instruction}</li>
-          ))}
-        </ol>
-      </div>
-
+    <div className="text-center">
       <Button 
         onClick={handleRequestPermission}
         disabled={isRequesting}
-        className="mb-3"
+        className="bg-blue-600 hover:bg-blue-700 text-white border-0"
       >
         {isRequesting ? (
           <>
@@ -93,10 +61,6 @@ export default function MicrophonePermissionRequest({
           text.buttonText
         )}
       </Button>
-
-      <p className="text-xs text-gray-500">{text.note}</p>
-
-      <MicrophoneTroubleshooting language={language} />
     </div>
   );
 }
