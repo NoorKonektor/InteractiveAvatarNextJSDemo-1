@@ -15,7 +15,7 @@ export default function AnimatedDirectionsMap({ language, isVisible, onClose }: 
   const [mapError, setMapError] = useState(false);
   const [routeProgress, setRouteProgress] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const animationRef = useRef<NodeJS.Timeout>();
+const animationRef = useRef<NodeJS>();
 
   useEffect(() => {
     if (!isVisible) return;
