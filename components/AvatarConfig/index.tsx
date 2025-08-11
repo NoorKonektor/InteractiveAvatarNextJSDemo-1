@@ -53,7 +53,7 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
   }, [config.avatarName]);
 
   return (
-    <div className="relative flex flex-col gap-4 w-full max-w-md py-8 max-h-full overflow-y-auto px-6 text-gray-900">
+    <div className="relative flex flex-col gap-4 w-full max-w-md py-4 h-full overflow-y-auto px-6 text-gray-900 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-gray-100">
       <div className="text-center mb-4">
         <h2 className="text-xl font-semibold text-gray-800 mb-2">Configure Avatar</h2>
         <p className="text-sm text-gray-600">Customize your AI assistant settings</p>

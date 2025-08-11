@@ -249,48 +249,6 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
     <div className="w-full max-w-7xl mx-auto animate-fadeIn">
       {/* Main Interface Container */}
       <div className="bg-white/85 backdrop-blur-2xl border border-white/70 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-700 hover:shadow-3xl">
-        {/* Enhanced Header */}
-        <div className="bg-gradient-to-r from-blue-50/90 via-purple-50/90 to-indigo-50/90 p-8 border-b border-white/50 relative overflow-hidden">
-          {/* Background Animation */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 via-blue-500/5 to-purple-600/5 animate-gradient-x"></div>
-          
-          <div className="relative text-center">
-            <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 shadow-2xl mb-4 animate-float">
-                <span className="text-white text-3xl font-bold">VA</span>
-              </div>
-            </div>
-            
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 animate-fadeInUp">
-              {language === "es" ? "Asistente Virtual" : "Virtual Assistant"}
-            </h2>
-            
-            <p className="text-gray-600 text-lg font-medium animate-fadeInUp" style={{animationDelay: '0.2s'}}>
-              {language === "es" 
-                ? "Soporte AI multilingüe para reuniones" 
-                : "AI-powered multilingual meeting support"
-              }
-            </p>
-            
-            {/* Status Indicators */}
-            <div className="flex items-center justify-center gap-6 mt-6 animate-fadeInUp" style={{animationDelay: '0.4s'}}>
-              <div className="flex items-center gap-2 bg-white/70 px-4 py-2 rounded-full border border-white/50 shadow-lg">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-700">
-                  {language === "es" ? "Sistema en línea" : "System online"}
-                </span>
-              </div>
-              
-              <div className="flex items-center gap-2 bg-white/70 px-4 py-2 rounded-full border border-white/50 shadow-lg">
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-ping"></div>
-                <span className="text-sm font-medium text-gray-700">
-                  {language === "es" ? "IA lista" : "AI ready"}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Main Interface Grid */}
         <div className="grid lg:grid-cols-2 gap-8 p-8">
           {/* Avatar Control Panel */}

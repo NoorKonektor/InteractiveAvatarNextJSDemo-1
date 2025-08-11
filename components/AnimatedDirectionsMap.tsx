@@ -56,13 +56,13 @@ const animationRef = useRef<NodeJS>();
         }
 
         // Dental clinic coordinates (example: Manhattan, NY)
-        const clinicCoords: [number, number] = [40.7589, -73.9851];
-        const startCoords: [number, number] = [40.7580, -73.9855];
+        const clinicCoords: [number, number] = [41.389553250747966, 2.1352035676098122];
+        const startCoords: [number, number] = [41.43993704386015, 2.2180095433055214];
 
         // Create map
         mapInstance.current = window.L.map(mapRef.current, {
           center: clinicCoords,
-          zoom: 16,
+          zoom: 15,
           zoomControl: true,
           scrollWheelZoom: true
         });
@@ -73,12 +73,15 @@ const animationRef = useRef<NodeJS>();
           maxZoom: 18
         }).addTo(mapInstance.current);
 
-        // Route coordinates
+        // Extended route coordinates for longer route
         const routeCoords: [number, number][] = [
           startCoords,
-          [40.7582, -73.9853],
-          [40.7585, -73.9851],
-          [40.7587, -73.9850],
+          [41.43993704386015, 2.2180095433055214],
+          [41.43993704386015, 2.2180095433055214],
+          [41.43993704386015, 2.2180095433055214],
+          [41.43993704386015, 2.2180095433055214],
+          [41.43993704386015, 2.2180095433055214],
+           [41.43993704386015, 2.2180095433055214],
           clinicCoords
         ];
 
@@ -150,8 +153,8 @@ const animationRef = useRef<NodeJS>();
           }
 
           let progress = 0;
-          const duration = 3000; // 3 seconds
-          const interval = 50; // Update every 50ms
+          const duration = 5000; // 5 seconds for longer animation
+          const interval = 30; // Update every 30ms for smoother animation
           const steps = duration / interval;
           const increment = 1 / steps;
 
@@ -187,9 +190,9 @@ const animationRef = useRef<NodeJS>();
 
             animatedRoute = window.L.polyline(partialRoute, {
               color: '#3b82f6',
-              weight: 4,
-              opacity: 0.9,
-              smoothFactor: 1,
+              weight: 5,
+              opacity: 1,
+              smoothFactor: 2,
               className: 'animated-route'
             }).addTo(mapInstance.current);
 
@@ -201,9 +204,15 @@ const animationRef = useRef<NodeJS>();
           animate();
         };
 
-        // Start animation after a delay
-        setTimeout(() => {
+        // Start animation after a delay and repeat
+        const startAnimation = () => {
           animateRoute();
+          // Repeat animation every 8 seconds
+          setTimeout(startAnimation, 8000);
+        };
+
+        setTimeout(() => {
+          startAnimation();
         }, 1000);
 
         // Fit map to show the route
@@ -239,13 +248,15 @@ const animationRef = useRef<NodeJS>();
     en: {
       title: "��️ Route to Dental Clinic",
       walking: "🚶‍♂️ Walking directions",
-      duration: "⏱️ Estimated time: 5-8 minutes",
-      distance: "📏 Distance: ~600 meters",
+      duration: "⏱️ Estimated time: 8-12 minutes",
+      distance: "📏 Distance: ~950 meters",
       instructions: [
         "Exit the building and head north",
-        "Turn right on Main Street", 
-        "Walk 2 blocks straight",
-        "The clinic is on your left (red marker)"
+        "Walk straight for 3 blocks",
+        "Turn right on Main Street",
+        "Continue for 2 more blocks",
+        "Turn left at the pharmacy",
+        "The clinic is 50m ahead on your right (red marker)"
       ],
       closeBtn: "Close Directions",
       loading: "🗺️ Loading interactive map...",
@@ -256,13 +267,15 @@ const animationRef = useRef<NodeJS>();
     es: {
       title: "🗺️ Ruta a la Clínica Dental",
       walking: "🚶‍♂️ Direcciones a pie",
-      duration: "⏱️ Tiempo estimado: 5-8 minutos",
-      distance: "📏 Distancia: ~600 metros",
+      duration: "⏱️ Tiempo estimado: 8-12 minutos",
+      distance: "📏 Distancia: ~950 metros",
       instructions: [
         "Salga del edificio y diríjase al norte",
+        "Camine derecho por 3 cuadras",
         "Gire a la derecha en la calle Main",
-        "Camine 2 cuadras en línea recta",
-        "La clínica está a su izquierda (marcador rojo)"
+        "Continue por 2 cuadras más",
+        "Gire a la izquierda en la farmacia",
+        "La clínica está 50m adelante a su derecha (marcador rojo)"
       ],
       closeBtn: "Cerrar Direcciones",
       loading: "🗺️ Cargando mapa interactivo...",
@@ -466,7 +479,13 @@ const animationRef = useRef<NodeJS>();
         }
         
         .animated-route {
-          filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));
+          filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+          animation: route-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes route-glow {
+          from { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)); }
+          to { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 1)); }
         }
       `}</style>
     </div>
