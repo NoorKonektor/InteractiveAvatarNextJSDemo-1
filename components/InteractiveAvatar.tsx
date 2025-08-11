@@ -246,48 +246,101 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full max-w-7xl mx-auto animate-fadeIn">
       {/* Main Interface Container */}
-      <div className="bg-white/80 backdrop-blur-lg border border-white/60 rounded-3xl overflow-hidden shadow-2xl">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-50/80 via-purple-50/80 to-indigo-50/80 p-8 border-b border-white/40">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+      <div className="bg-white/85 backdrop-blur-2xl border border-white/70 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-700 hover:shadow-3xl">
+        {/* Enhanced Header */}
+        <div className="bg-gradient-to-r from-blue-50/90 via-purple-50/90 to-indigo-50/90 p-8 border-b border-white/50 relative overflow-hidden">
+          {/* Background Animation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 via-blue-500/5 to-purple-600/5 animate-gradient-x"></div>
+          
+          <div className="relative text-center">
+            <div className="mb-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 shadow-2xl mb-4 animate-float">
+                <span className="text-white text-3xl font-bold">VA</span>
+              </div>
+            </div>
+            
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 animate-fadeInUp">
               {language === "es" ? "Asistente Virtual" : "Virtual Assistant"}
             </h2>
-            <p className="text-gray-600 text-lg font-medium">
+            
+            <p className="text-gray-600 text-lg font-medium animate-fadeInUp" style={{animationDelay: '0.2s'}}>
               {language === "es" 
                 ? "Soporte AI multilingüe para reuniones" 
                 : "AI-powered multilingual meeting support"
               }
             </p>
+            
+            {/* Status Indicators */}
+            <div className="flex items-center justify-center gap-6 mt-6 animate-fadeInUp" style={{animationDelay: '0.4s'}}>
+              <div className="flex items-center gap-2 bg-white/70 px-4 py-2 rounded-full border border-white/50 shadow-lg">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-gray-700">
+                  {language === "es" ? "Sistema en línea" : "System online"}
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-2 bg-white/70 px-4 py-2 rounded-full border border-white/50 shadow-lg">
+                <div className="w-3 h-3 bg-blue-500 rounded-full animate-ping"></div>
+                <span className="text-sm font-medium text-gray-700">
+                  {language === "es" ? "IA lista" : "AI ready"}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Main Interface Grid */}
         <div className="grid lg:grid-cols-2 gap-8 p-8">
           {/* Avatar Control Panel */}
-          <div className="space-y-6">
+          <div className="space-y-6 animate-slideInLeft">
             {/* Avatar Display */}
-            <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
-              {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
-                <AvatarVideo ref={mediaStream} />
-              ) : (
-                <div className="h-full flex items-center justify-center">
-                  <AvatarConfig config={config} onConfigChange={setConfig} />
-                </div>
-              )}
+            <div className="relative group">
+              <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl overflow-hidden border border-gray-200 shadow-xl transform transition-all duration-500 group-hover:scale-105">
+                {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
+                  <div className="relative h-full">
+                    <AvatarVideo ref={mediaStream} />
+                    {/* Status Overlay */}
+                    <div className="absolute top-4 left-4 bg-red-500/90 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2 shadow-lg">
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                      LIVE
+                    </div>
+                  </div>
+                ) : (
+                  <div className="h-full flex items-center justify-center relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 animate-pulse"></div>
+                    <AvatarConfig config={config} onConfigChange={setConfig} />
+                  </div>
+                )}
+              </div>
+              
+              {/* Glow Effect */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
 
-            {/* Control Panel */}
-            <div className="bg-gradient-to-br from-white/60 to-gray-50/60 backdrop-blur-md p-6 rounded-2xl border border-white/40 shadow-lg">
+            {/* Enhanced Control Panel */}
+            <div className="bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-xl p-8 rounded-3xl border border-white/50 shadow-xl transform transition-all duration-500 hover:shadow-2xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">
+                  {language === "es" ? "Panel de Control" : "Control Panel"}
+                </h3>
+              </div>
+
               {sessionState === StreamingAvatarSessionState.CONNECTED ? (
-                <AvatarControls />
+                <div className="animate-fadeIn">
+                  <AvatarControls />
+                </div>
               ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {/* Microphone Permission */}
                   {microphonePermission.checked && !microphonePermission.granted && (
-                    <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 p-6 rounded-2xl shadow-lg animate-slideInUp">
                       <MicrophonePermissionRequest
                         onPermissionGranted={handleMicrophonePermissionGranted}
                         onPermissionDenied={handleMicrophonePermissionDenied}
@@ -298,61 +351,87 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
                   {/* Error Display */}
                   {microphonePermission.error && (
-                    <div className="bg-red-50 border border-red-200 p-4 rounded-xl">
-                      <span className="text-red-600 text-sm font-medium">{microphonePermission.error}</span>
+                    <div className="bg-gradient-to-r from-red-50 to-red-100 border border-red-200 p-6 rounded-2xl shadow-lg animate-shake">
+                      <div className="flex items-center gap-3">
+                        <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-red-600 font-medium">{microphonePermission.error}</span>
+                      </div>
                     </div>
                   )}
 
-                  {/* Action Buttons */}
+                  {/* Enhanced Action Buttons */}
                   <div className="grid grid-cols-2 gap-4">
                     <Button
                       onClick={() => startSessionV2(true)}
                       disabled={!microphonePermission.granted}
                       className={`
                         bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 
-                        text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200
+                        text-white border-0 shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300
+                        relative overflow-hidden group
                         ${!microphonePermission.granted ? 'opacity-50 cursor-not-allowed hover:scale-100' : ''}
                       `}
                     >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                      </svg>
-                      Voice Chat
+                      <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                      <div className="relative flex items-center justify-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
+                        Voice Chat
+                      </div>
                     </Button>
+                    
                     <Button 
                       onClick={() => startSessionV2(false)}
-                      className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                      className="
+                        bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 
+                        text-white border-0 shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300
+                        relative overflow-hidden group
+                      "
                     >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                      </svg>
-                      Text Chat
+                      <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                      <div className="relative flex items-center justify-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        Text Chat
+                      </div>
                     </Button>
                   </div>
                 </div>
               ) : (
-                <div className="flex items-center justify-center py-8">
-                  <div className="flex items-center gap-3">
-                    <LoadingIcon />
-                    <span className="text-gray-600 text-sm font-medium">Connecting...</span>
+                <div className="flex items-center justify-center py-12">
+                  <div className="text-center">
+                    <div className="relative mb-4">
+                      <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-8 h-8 bg-blue-500 rounded-full animate-pulse"></div>
+                      </div>
+                    </div>
+                    <span className="text-gray-600 font-medium animate-pulse">
+                      {language === "es" ? "Conectando..." : "Connecting..."}
+                    </span>
                   </div>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Media Panel */}
-          <div className="bg-gradient-to-br from-white/60 to-gray-50/60 backdrop-blur-md border border-white/40 rounded-2xl overflow-hidden shadow-lg">
-            <div className="p-6 border-b border-white/40 bg-gradient-to-r from-blue-50/50 to-purple-50/50">
-              <h3 className="text-gray-800 font-semibold text-lg flex items-center gap-2">
-                <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Information Display
+          {/* Enhanced Media Panel */}
+          <div className="bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-xl border border-white/50 rounded-3xl overflow-hidden shadow-xl transform transition-all duration-500 hover:shadow-2xl animate-slideInRight">
+            <div className="p-6 border-b border-white/50 bg-gradient-to-r from-blue-50/70 to-purple-50/70">
+              <h3 className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                {language === "es" ? "Panel de Información" : "Information Display"}
               </h3>
             </div>
             
-            <div className="h-96 overflow-hidden">
+            <div className="h-96 overflow-hidden relative">
               {showDirections ? (
                 <AnimatedDirectionsMap
                   language={language}
@@ -360,7 +439,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                   onClose={handleCloseDirections}
                 />
               ) : showBookingGuide ? (
-                <div className="p-6 h-full overflow-y-auto">
+                <div className="p-6 h-full overflow-y-auto animate-fadeIn">
                   <BookingGuide
                     language={language}
                     isVisible={showBookingGuide}
@@ -368,7 +447,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                   />
                 </div>
               ) : currentGuideType ? (
-                <div className="p-6 h-full overflow-y-auto">
+                <div className="p-6 h-full overflow-y-auto animate-fadeIn">
                   <AnimatedGuides
                     guideType={currentGuideType}
                     language={language}
@@ -377,7 +456,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                   />
                 </div>
               ) : (
-                <div className="p-6 h-full overflow-y-auto">
+                <div className="p-6 h-full overflow-y-auto animate-fadeIn">
                   <InlineMedia
                     mediaType={mediaDisplay.type}
                     mediaUrl={mediaDisplay.url}
@@ -390,27 +469,109 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
           </div>
         </div>
 
-        {/* Preset buttons */}
-        <div className="border-t border-white/40 bg-gradient-to-r from-blue-50/50 via-purple-50/50 to-indigo-50/50 p-8">
+        {/* Enhanced Preset buttons */}
+        <div className="border-t border-white/50 bg-gradient-to-r from-blue-50/70 via-purple-50/70 to-indigo-50/70 p-8 animate-slideInUp">
           <PresetButtons
             onSendMessage={handlePresetMessage}
             language={language}
           />
         </div>
 
-        {/* Message history */}
+        {/* Enhanced Message history */}
         {sessionState === StreamingAvatarSessionState.CONNECTED && (
-          <div className="border-t border-white/40 bg-gradient-to-r from-gray-50/50 to-blue-50/50 p-8">
-            <h3 className="text-gray-800 font-semibold text-lg mb-6 flex items-center gap-2">
-              <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              Conversation History
+          <div className="border-t border-white/50 bg-gradient-to-r from-gray-50/70 to-blue-50/70 p-8 animate-fadeIn">
+            <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center shadow-lg">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              {language === "es" ? "Historial de Conversación" : "Conversation History"}
             </h3>
             <MessageHistory />
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInUp {
+          from { opacity: 0; transform: translateY(50px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out;
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .animate-slideInLeft {
+          animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .animate-slideInRight {
+          animation: slideInRight 0.8s ease-out;
+        }
+        
+        .animate-slideInUp {
+          animation: slideInUp 0.6s ease-out;
+        }
+        
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+          background-size: 200% 200%;
+        }
+        
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+        
+        .shadow-3xl {
+          box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+        }
+      `}</style>
     </div>
   );
 }
