@@ -135,10 +135,11 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
           const isHovered = hoveredButton === button.id;
           
           return (
-            <div 
-              key={button.id} 
-              className="group relative"
+            <div
+              key={button.id}
+              className="group relative isolate"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={(e) => e.stopPropagation()}
             >
               {/* Glow Effect */}
               <div className={`
