@@ -24,6 +24,7 @@ import InlineMedia from "./InlineMedia";
 import MicrophonePermissionRequest from "./MicrophonePermissionRequest";
 import BookingGuide from "./BookingGuide";
 import AnimatedGuides from "./AnimatedGuides";
+import AnimatedDirectionsMap from "./AnimatedDirectionsMap";
 import { checkMicrophonePermission } from "./utils/microphonePermissions";
 
 import { AVATARS } from "@/app/lib/constants";
@@ -71,6 +72,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   }>({ granted: false, checked: false });
   const [showBookingGuide, setShowBookingGuide] = useState(false);
   const [currentGuideType, setCurrentGuideType] = useState<"location" | "office-hours" | "parking" | "services" | "insurance" | null>(null);
+  const [showDirections, setShowDirections] = useState(false);
 
   const mediaStream = useRef<HTMLVideoElement>(null);
 
@@ -193,29 +195,26 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
     // Reset previous states
     setMediaDisplay({ type: undefined, url: undefined, visible: false });
+    setShowBookingGuide(false);
+    setCurrentGuideType(null);
+    setShowDirections(false);
 
     if (messageLower.includes("appointment") || messageLower.includes("book")) {
       setShowBookingGuide(true);
-      setCurrentGuideType(null);
+    } else if (messageLower.includes("directions") || messageLower.includes("how to get") || messageLower.includes("cómo llegar")) {
+      setShowDirections(true);
     } else if (messageLower.includes("dentist room") || messageLower.includes("situated") || messageLower.includes("location")) {
-      setShowBookingGuide(false);
       setCurrentGuideType("location");
     } else if (messageLower.includes("office hours") || messageLower.includes("contact")) {
-      setShowBookingGuide(false);
       setCurrentGuideType("office-hours");
     } else if (messageLower.includes("parking")) {
-      setShowBookingGuide(false);
       setCurrentGuideType("parking");
     } else if (messageLower.includes("services") || messageLower.includes("costs")) {
-      setShowBookingGuide(false);
       setCurrentGuideType("services");
     } else if (messageLower.includes("insurance")) {
-      setShowBookingGuide(false);
       setCurrentGuideType("insurance");
     } else {
       // Default behavior for other messages - show media if available
-      setShowBookingGuide(false);
-      setCurrentGuideType(null);
       if (mediaType && mediaUrl) {
         setMediaDisplay({
           type: mediaType as "video" | "image" | "map",
@@ -240,6 +239,10 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
   const handleCloseAnimatedGuide = () => {
     setCurrentGuideType(null);
+  };
+
+  const handleCloseDirections = () => {
+    setShowDirections(false);
   };
 
   return (
@@ -349,8 +352,14 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
               </h3>
             </div>
             
-            <div className="p-6">
-              {showBookingGuide ? (
+            <div className="p-6 h-96">
+              {showDirections ? (
+                <AnimatedDirectionsMap
+                  language={language}
+                  isVisible={showDirections}
+                  onClose={handleCloseDirections}
+                />
+              ) : showBookingGuide ? (
                 <BookingGuide
                   language={language}
                   isVisible={showBookingGuide}
