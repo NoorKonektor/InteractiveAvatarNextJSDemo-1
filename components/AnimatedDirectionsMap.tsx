@@ -15,7 +15,7 @@ export default function AnimatedDirectionsMap({ language, isVisible, onClose }: 
   const [mapError, setMapError] = useState(false);
   const [routeProgress, setRouteProgress] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-const animationRef = useRef<NodeJS>();
+const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -197,7 +197,7 @@ const animationRef = useRef<NodeJS>();
             }).addTo(mapInstance.current);
 
             if (progress < 1) {
-              animationRef.current = setTimeout(animate, interval);
+              animationRef.current = window.setTimeout(animate, interval);
             }
           };
 
