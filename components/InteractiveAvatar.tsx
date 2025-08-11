@@ -250,7 +250,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
       {/* Main Interface Container */}
       <div className="bg-white/85 backdrop-blur-2xl border border-white/70 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-700 hover:shadow-3xl">
         {/* Main Interface Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 p-4 lg:p-10 xl:p-14">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 xl:gap-20 p-4 lg:p-10 xl:p-14">
           {/* Avatar Control Panel */}
           <div className="space-y-6 animate-slideInLeft">
             {/* Avatar Display */}
@@ -377,7 +377,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
           </div>
 
           {/* Enhanced Media Panel */}
-          <div className="bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-xl border border-white/50 rounded-3xl overflow-hidden shadow-xl transform transition-all duration-500 hover:shadow-2xl animate-slideInRight">
+          <div className="bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-xl border border-white/50 rounded-3xl overflow-hidden shadow-xl transform transition-all duration-500 hover:shadow-2xl animate-slideInRight flex flex-col h-[600px] xl:h-[700px]">
             <div className="p-6 border-b border-white/50 bg-gradient-to-r from-blue-50/70 to-purple-50/70">
               <h3 className="text-xl font-bold text-gray-800 flex items-center gap-3">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
@@ -388,8 +388,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                 {language === "es" ? "Panel de Información" : "Information Display"}
               </h3>
             </div>
-            
-            <div className="h-96 overflow-hidden relative">
+            <div className="flex-1 overflow-y-auto relative">
               {showDirections ? (
                 <AnimatedDirectionsMap
                   language={language}
@@ -428,11 +427,13 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
         </div>
 
         {/* Enhanced Preset buttons */}
-        <div className="border-t border-white/50 bg-gradient-to-r from-blue-50/70 via-purple-50/70 to-indigo-50/70 p-8 animate-slideInUp">
-          <PresetButtons
-            onSendMessage={handlePresetMessage}
-            language={language}
-          />
+        <div className="border-t border-white/50 bg-gradient-to-r from-blue-50/70 via-purple-50/70 to-indigo-50/70 px-2 lg:px-8 xl:px-16 py-8 animate-slideInUp">
+          <div className="max-w-[1600px] mx-auto">
+            <PresetButtons
+              onSendMessage={handlePresetMessage}
+              language={language}
+            />
+          </div>
         </div>
 
         {/* Enhanced Message history */}

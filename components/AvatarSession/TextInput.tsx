@@ -64,7 +64,7 @@ export const TextInput: React.FC = () => {
   }, [message, previousText, startListening, stopListening]);
 
   return (
-    <div className="flex flex-row gap-2 items-end w-full max-w-full">
+    <div className="flex flex-wrap gap-2 items-end w-full max-w-full">
       <Select
         isSelected={(option) => option === taskType}
         options={Object.values(TaskType)}
@@ -79,12 +79,14 @@ export const TextInput: React.FC = () => {
         value={taskMode.toUpperCase()}
         onSelect={setTaskMode}
       />
-      <Input
-        className="flex-grow min-w-0 max-w-full lg:min-w-[300px] xl:min-w-[400px] 2xl:min-w-[500px]"
-        placeholder={`Type something for the avatar to ${taskType === TaskType.REPEAT ? "repeat" : "respond"}...`}
-        value={message}
-        onChange={setMessage}
-      />
+      <div className="flex-grow min-w-0 max-w-full">
+        <Input
+          className="w-full"
+          placeholder={`Type something for the avatar to ${taskType === TaskType.REPEAT ? "repeat" : "respond"}...`}
+          value={message}
+          onChange={setMessage}
+        />
+      </div>
       <Button className="!p-2" onClick={handleSend}>
         <SendIcon size={20} />
       </Button>
