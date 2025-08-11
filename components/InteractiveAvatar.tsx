@@ -245,14 +245,14 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   return (
     <div className="w-full max-w-7xl mx-auto">
       {/* Main Interface Container */}
-      <div className="bg-gray-800/30 backdrop-blur-md border border-gray-600/30 rounded-2xl overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-lg border border-white/60 rounded-3xl overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="bg-gray-900/50 p-6 border-b border-gray-600/30">
+        <div className="bg-gradient-to-r from-blue-50/80 via-purple-50/80 to-indigo-50/80 p-8 border-b border-white/40">
           <div className="text-center">
-            <h2 className="text-2xl font-semibold text-white mb-2">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3">
               {language === "es" ? "Asistente Virtual" : "Virtual Assistant"}
             </h2>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-600 text-lg font-medium">
               {language === "es" 
                 ? "Soporte AI multilingüe para reuniones" 
                 : "AI-powered multilingual meeting support"
@@ -262,11 +262,11 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
         </div>
 
         {/* Main Interface Grid */}
-        <div className="grid lg:grid-cols-2 gap-6 p-6">
+        <div className="grid lg:grid-cols-2 gap-8 p-8">
           {/* Avatar Control Panel */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {/* Avatar Display */}
-            <div className="aspect-video bg-gray-900/50 rounded-xl overflow-hidden border border-gray-600/30">
+            <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
               {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
                 <AvatarVideo ref={mediaStream} />
               ) : (
@@ -277,14 +277,14 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
             </div>
 
             {/* Control Panel */}
-            <div className="bg-gray-900/30 p-4 rounded-xl border border-gray-600/30">
+            <div className="bg-gradient-to-br from-white/60 to-gray-50/60 backdrop-blur-md p-6 rounded-2xl border border-white/40 shadow-lg">
               {sessionState === StreamingAvatarSessionState.CONNECTED ? (
                 <AvatarControls />
               ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
                 <div className="space-y-4">
                   {/* Microphone Permission */}
                   {microphonePermission.checked && !microphonePermission.granted && (
-                    <div className="bg-amber-500/10 border border-amber-500/30 p-3 rounded-lg">
+                    <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
                       <MicrophonePermissionRequest
                         onPermissionGranted={handleMicrophonePermissionGranted}
                         onPermissionDenied={handleMicrophonePermissionDenied}
@@ -295,36 +295,43 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
                   {/* Error Display */}
                   {microphonePermission.error && (
-                    <div className="bg-red-500/10 border border-red-500/30 p-3 rounded-lg">
-                      <span className="text-red-400 text-sm">{microphonePermission.error}</span>
+                    <div className="bg-red-50 border border-red-200 p-4 rounded-xl">
+                      <span className="text-red-600 text-sm font-medium">{microphonePermission.error}</span>
                     </div>
                   )}
 
                   {/* Action Buttons */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-4">
                     <Button
                       onClick={() => startSessionV2(true)}
                       disabled={!microphonePermission.granted}
                       className={`
-                        bg-blue-600 hover:bg-blue-700 text-white border-0
-                        ${!microphonePermission.granted ? 'opacity-50 cursor-not-allowed' : ''}
+                        bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 
+                        text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200
+                        ${!microphonePermission.granted ? 'opacity-50 cursor-not-allowed hover:scale-100' : ''}
                       `}
                     >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                      </svg>
                       Voice Chat
                     </Button>
                     <Button 
                       onClick={() => startSessionV2(false)}
-                      className="bg-gray-600 hover:bg-gray-700 text-white border-0"
+                      className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                     >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
                       Text Chat
                     </Button>
                   </div>
                 </div>
               ) : (
-                <div className="flex items-center justify-center py-6">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center gap-3">
                     <LoadingIcon />
-                    <span className="text-gray-400 text-sm">Connecting...</span>
+                    <span className="text-gray-600 text-sm font-medium">Connecting...</span>
                   </div>
                 </div>
               )}
@@ -332,12 +339,17 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
           </div>
 
           {/* Media Panel */}
-          <div className="bg-gray-900/30 border border-gray-600/30 rounded-xl overflow-hidden">
-            <div className="p-4 border-b border-gray-600/30">
-              <h3 className="text-white font-medium">Information Display</h3>
+          <div className="bg-gradient-to-br from-white/60 to-gray-50/60 backdrop-blur-md border border-white/40 rounded-2xl overflow-hidden shadow-lg">
+            <div className="p-6 border-b border-white/40 bg-gradient-to-r from-blue-50/50 to-purple-50/50">
+              <h3 className="text-gray-800 font-semibold text-lg flex items-center gap-2">
+                <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Information Display
+              </h3>
             </div>
             
-            <div className="p-4">
+            <div className="p-6">
               {showBookingGuide ? (
                 <BookingGuide
                   language={language}
@@ -364,7 +376,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
         </div>
 
         {/* Preset buttons */}
-        <div className="border-t border-gray-600/30 bg-gray-900/30 p-6">
+        <div className="border-t border-white/40 bg-gradient-to-r from-blue-50/50 via-purple-50/50 to-indigo-50/50 p-8">
           <PresetButtons
             onSendMessage={handlePresetMessage}
             language={language}
@@ -373,8 +385,13 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
 
         {/* Message history */}
         {sessionState === StreamingAvatarSessionState.CONNECTED && (
-          <div className="border-t border-gray-600/30 bg-gray-900/50 p-6">
-            <h3 className="text-white font-medium mb-4">Conversation History</h3>
+          <div className="border-t border-white/40 bg-gradient-to-r from-gray-50/50 to-blue-50/50 p-8">
+            <h3 className="text-gray-800 font-semibold text-lg mb-6 flex items-center gap-2">
+              <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Conversation History
+            </h3>
             <MessageHistory />
           </div>
         )}
