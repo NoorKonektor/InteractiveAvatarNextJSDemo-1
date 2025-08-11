@@ -352,7 +352,7 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
               </h3>
             </div>
             
-            <div className="p-6 h-96">
+            <div className="h-96 overflow-hidden">
               {showDirections ? (
                 <AnimatedDirectionsMap
                   language={language}
@@ -360,25 +360,31 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
                   onClose={handleCloseDirections}
                 />
               ) : showBookingGuide ? (
-                <BookingGuide
-                  language={language}
-                  isVisible={showBookingGuide}
-                  onClose={handleCloseBookingGuide}
-                />
+                <div className="p-6 h-full overflow-y-auto">
+                  <BookingGuide
+                    language={language}
+                    isVisible={showBookingGuide}
+                    onClose={handleCloseBookingGuide}
+                  />
+                </div>
               ) : currentGuideType ? (
-                <AnimatedGuides
-                  guideType={currentGuideType}
-                  language={language}
-                  isVisible={!!currentGuideType}
-                  onClose={handleCloseAnimatedGuide}
-                />
+                <div className="p-6 h-full overflow-y-auto">
+                  <AnimatedGuides
+                    guideType={currentGuideType}
+                    language={language}
+                    isVisible={!!currentGuideType}
+                    onClose={handleCloseAnimatedGuide}
+                  />
+                </div>
               ) : (
-                <InlineMedia
-                  mediaType={mediaDisplay.type}
-                  mediaUrl={mediaDisplay.url}
-                  isVisible={true}
-                  language={language}
-                />
+                <div className="p-6 h-full overflow-y-auto">
+                  <InlineMedia
+                    mediaType={mediaDisplay.type}
+                    mediaUrl={mediaDisplay.url}
+                    isVisible={true}
+                    language={language}
+                  />
+                </div>
               )}
             </div>
           </div>
