@@ -13,7 +13,7 @@ interface PresetButton {
   textEn: string;
   textEs: string;
   message: string;
-  mediaType?: "video" | "image" | "map";
+  mediaType?: "video" | "image" | "map" | "directions";
   mediaUrl?: string;
   icon: string;
 }
@@ -34,6 +34,14 @@ const PRESET_BUTTONS: PresetButton[] = [
     mediaType: "map",
     mediaUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.4555!2d-74.0059413!3d40.7127837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e7fcc1f%3A0x4b3ba7f23b567d2c!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890",
     icon: "🗺️"
+  },
+  {
+    id: "directions",
+    textEn: "How to Get There",
+    textEs: "Cómo Llegar",
+    message: "How do I get to the dental clinic? Can you show me directions?",
+    mediaType: "directions",
+    icon: "🧭"
   },
   {
     id: "office-hours",
