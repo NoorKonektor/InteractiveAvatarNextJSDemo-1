@@ -56,8 +56,8 @@ const animationRef = useRef<NodeJS>();
         }
 
         // Dental clinic coordinates (example: Manhattan, NY)
-        const clinicCoords: [number, number] = [40.7589, -73.9851];
-        const startCoords: [number, number] = [40.7570, -73.9870];
+        const clinicCoords: [number, number] = [41.389553250747966, 2.1352035676098122];
+        const startCoords: [number, number] = [41.43993704386015, 2.2180095433055214];
 
         // Create map
         mapInstance.current = window.L.map(mapRef.current, {
