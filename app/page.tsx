@@ -8,25 +8,7 @@ export default function App() {
   const [language, setLanguage] = useState("es");
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-      {/* Matrix Rain Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-green-400 font-mono text-sm"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-              animation: 'matrix-rain 3s linear infinite'
-            }}
-          >
-            {String.fromCharCode(0x30A0 + Math.random() * 96)}
-          </div>
-        ))}
-      </div>
-
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 cyber-grid">
       {/* Main Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         <NavBar onLanguageChange={setLanguage} currentLanguage={language} />
