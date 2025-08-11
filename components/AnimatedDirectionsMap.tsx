@@ -57,12 +57,12 @@ const animationRef = useRef<NodeJS>();
 
         // Dental clinic coordinates (example: Manhattan, NY)
         const clinicCoords: [number, number] = [40.7589, -73.9851];
-        const startCoords: [number, number] = [40.7580, -73.9855];
+        const startCoords: [number, number] = [40.7570, -73.9870];
 
         // Create map
         mapInstance.current = window.L.map(mapRef.current, {
           center: clinicCoords,
-          zoom: 16,
+          zoom: 15,
           zoomControl: true,
           scrollWheelZoom: true
         });
@@ -73,12 +73,15 @@ const animationRef = useRef<NodeJS>();
           maxZoom: 18
         }).addTo(mapInstance.current);
 
-        // Route coordinates
+        // Extended route coordinates for longer route
         const routeCoords: [number, number][] = [
           startCoords,
-          [40.7582, -73.9853],
-          [40.7585, -73.9851],
-          [40.7587, -73.9850],
+          [40.7575, -73.9865],
+          [40.7580, -73.9860],
+          [40.7582, -73.9858],
+          [40.7585, -73.9855],
+          [40.7587, -73.9853],
+          [40.7588, -73.9852],
           clinicCoords
         ];
 
@@ -150,8 +153,8 @@ const animationRef = useRef<NodeJS>();
           }
 
           let progress = 0;
-          const duration = 3000; // 3 seconds
-          const interval = 50; // Update every 50ms
+          const duration = 5000; // 5 seconds for longer animation
+          const interval = 30; // Update every 30ms for smoother animation
           const steps = duration / interval;
           const increment = 1 / steps;
 
@@ -187,9 +190,9 @@ const animationRef = useRef<NodeJS>();
 
             animatedRoute = window.L.polyline(partialRoute, {
               color: '#3b82f6',
-              weight: 4,
-              opacity: 0.9,
-              smoothFactor: 1,
+              weight: 5,
+              opacity: 1,
+              smoothFactor: 2,
               className: 'animated-route'
             }).addTo(mapInstance.current);
 
@@ -201,9 +204,15 @@ const animationRef = useRef<NodeJS>();
           animate();
         };
 
-        // Start animation after a delay
-        setTimeout(() => {
+        // Start animation after a delay and repeat
+        const startAnimation = () => {
           animateRoute();
+          // Repeat animation every 8 seconds
+          setTimeout(startAnimation, 8000);
+        };
+
+        setTimeout(() => {
+          startAnimation();
         }, 1000);
 
         // Fit map to show the route
@@ -466,7 +475,13 @@ const animationRef = useRef<NodeJS>();
         }
         
         .animated-route {
-          filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));
+          filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+          animation: route-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes route-glow {
+          from { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)); }
+          to { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 1)); }
         }
       `}</style>
     </div>
