@@ -18,7 +18,7 @@ export const AvatarControls: React.FC = () => {
   const { interrupt } = useInterrupt();
 
   return (
-    <div className="flex flex-col gap-4 relative w-full items-center">
+    <div className="flex flex-col gap-4 relative w-full max-w-full items-center">
       <ToggleGroup
         className={`bg-gray-100 border border-gray-300 rounded-lg p-1 ${isVoiceChatLoading ? "opacity-50" : ""}`}
         disabled={isVoiceChatLoading}

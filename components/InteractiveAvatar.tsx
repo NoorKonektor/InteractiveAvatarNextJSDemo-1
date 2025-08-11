@@ -246,11 +246,11 @@ function InteractiveAvatar({ language }: InteractiveAvatarProps) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto animate-fadeIn">
+    <div className="w-full max-w-[1600px] mx-auto px-2 lg:px-8 xl:px-16 animate-fadeIn">
       {/* Main Interface Container */}
       <div className="bg-white/85 backdrop-blur-2xl border border-white/70 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-700 hover:shadow-3xl">
         {/* Main Interface Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 p-8">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 p-4 lg:p-10 xl:p-14">
           {/* Avatar Control Panel */}
           <div className="space-y-6 animate-slideInLeft">
             {/* Avatar Display */}
