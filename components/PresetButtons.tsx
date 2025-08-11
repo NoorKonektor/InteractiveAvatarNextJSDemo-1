@@ -93,10 +93,12 @@ export default function PresetButtons({ onSendMessage, language }: PresetButtons
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
-  const handleButtonClick = (button: PresetButton) => {
+  const handleButtonClick = (button: PresetButton, event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
     setSelectedButton(button.id);
     onSendMessage(button.message, button.mediaType, button.mediaUrl);
-    
+
     // Reset selection after 2 seconds
     setTimeout(() => {
       setSelectedButton(null);
