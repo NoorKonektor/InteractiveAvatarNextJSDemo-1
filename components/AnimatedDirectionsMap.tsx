@@ -248,13 +248,15 @@ const animationRef = useRef<NodeJS>();
     en: {
       title: "��️ Route to Dental Clinic",
       walking: "🚶‍♂️ Walking directions",
-      duration: "⏱️ Estimated time: 5-8 minutes",
-      distance: "📏 Distance: ~600 meters",
+      duration: "⏱️ Estimated time: 8-12 minutes",
+      distance: "📏 Distance: ~950 meters",
       instructions: [
         "Exit the building and head north",
-        "Turn right on Main Street", 
-        "Walk 2 blocks straight",
-        "The clinic is on your left (red marker)"
+        "Walk straight for 3 blocks",
+        "Turn right on Main Street",
+        "Continue for 2 more blocks",
+        "Turn left at the pharmacy",
+        "The clinic is 50m ahead on your right (red marker)"
       ],
       closeBtn: "Close Directions",
       loading: "🗺️ Loading interactive map...",
